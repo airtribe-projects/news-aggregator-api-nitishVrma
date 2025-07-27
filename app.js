@@ -13,11 +13,7 @@ mongoose.connect(process.env.MONGODB_URI, { /* options */ })
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/auth', authRoutes);
-app.get("/run", (req, res) => {
-  console.log("running /run")
-  res.json("Hello Runner ")
-})
+app.use('/', authRoutes);
 
 app.listen(port, (err) => {
   if (err) {
