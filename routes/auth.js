@@ -1,7 +1,6 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
 const router = express.Router();
-const { registerUser } = require("../controllers/user");
+const { registerUser , loginUser } = require("../controllers/user");
 
 router.post("/users/signup", async (req, res) => {
   try {
@@ -34,7 +33,7 @@ router.post("/users/login", async (req, res) => {
         if (err.message === "User not found" || err.message === "Invalid Password") {
             return res.status(401).json({ message: "Invalid credentials." });
         }
-        return res.status(500).json({ message: "Internal server error. Please try again later." });
+        return res.status(500).json({ message: `Internal server error. Please try again later. ${err}` });
     }
 });
 

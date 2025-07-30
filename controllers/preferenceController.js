@@ -1,7 +1,7 @@
 const PreferenceModel = require("../models/Preference");
 
 const getPreferenceForUser = async (userId) => {
-  const userPreference = await preferenceModel.findOne({ userId: userId });
+  const userPreference = await PreferenceModel.findOne({ userId: userId });
   if (!userPreference) {
     return { preferences: [] };
   }

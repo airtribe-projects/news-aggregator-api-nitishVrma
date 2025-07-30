@@ -16,7 +16,7 @@ router.get("/preferences", authMiddleware, async (req, res) => {
 
 router.put("/preferences", authMiddleware, async (req, res) => {
     try {
-        const userId = req.user.id; // Get user ID from the authenticated token
+        const userId = req.user.id;
         const newPreferences = req.body;
         if (!newPreferences || !Array.isArray(newPreferences.preferences)) {
             return res.status(400).json({ message: "Invalid preferences data. Expected an array of strings under 'preferences' key." });
@@ -25,7 +25,7 @@ router.put("/preferences", authMiddleware, async (req, res) => {
         const updatedPreferences = await updateOrCreatePreferences(userId, newPreferences);
         return res.status(200).json({
             message: "Preferences updated successfully!",
-            preferences: updatedPreferences.preferences // Return the updated array
+            preferences: updatedPreferences.preferences
         });
 
     } catch (err) {
